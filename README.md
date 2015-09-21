@@ -1,7 +1,7 @@
-# Logistic_Regression
-Goal of this project is to implement Logistic  Regression without using Machine Learning Libraries
+# Logistic_Regression for binary classification
+Goal of this project is to implement binary classification using Logistic  Regression without using Machine Learning Libraries
 
-In this project, I implemented logistic regression using gradient ascent algorithm.
+In this project, I implemented logistic regression for binary classification using gradient ascent algorithm.
 
 I implemented on three datasets for binary classification:
 
