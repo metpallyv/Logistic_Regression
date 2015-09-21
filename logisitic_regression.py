@@ -11,6 +11,7 @@ from collections import Counter
 from numpy import *
 import matplotlib.pyplot as plt
 
+#normalize the data using z-score normalization.
 def normalize(matrix,sd,me):
     with np.errstate(divide='ignore'):
         a = matrix
@@ -25,7 +26,6 @@ def normalize(matrix,sd,me):
             return b,sd_list,mean_list
         else:
             res = np.empty(shape=[a.shape[0],0])
-
             for i in range(a.shape[1]):
                 col = matrix[:, i]
                 mean_val = me[i]
@@ -35,16 +35,20 @@ def normalize(matrix,sd,me):
         res = np.nan_to_num(res)
     return res,sd,me
 
+#load the data set and shuffle the data randomly
 def load_csv(file):
     X = genfromtxt(file, delimiter=",",dtype=str)
     np.random.shuffle(X)
     return (X)
 
+#shuffle the data set randomly
 def random_numpy_array(ar):
     np.random.shuffle(ar)
     arr = ar
     return arr
 
+#divide the dataset into 90% training and 10% test and return training features,
+#training class labels and test features and test class labels 
 def generate_set(X):
     X = X.astype(np.float)
     num_test = round(0.1*(X.shape[0]))
@@ -86,6 +90,7 @@ def generate_set(X):
         end = end+num_test
     return test_attri_list,test_class_names_list,training_attri_list,training_class_names_list
 
+#graident descent function
 def gradient_descent(X,Y,lRate,tolerance,plotGraph):
     #MaxIterCount is 1000, don't iterate more than 1000 times
     max_iter = 1000
@@ -118,14 +123,17 @@ def gradient_descent(X,Y,lRate,tolerance,plotGraph):
         plt.savefig(fileName)
     return thetha
 
+
 def compute_log_loss(X,Y,thetha):
     p_1 = sigmoid(np.dot(X, thetha)) # predicted probability of label 1
     log_l = (-Y)*np.log(p_1) - (1-Y)*np.log(1-p_1) # log-likelihood vector
-
     return log_l.mean()
+
+#sigmoid function
 def sigmoid(X):
     return 1 / (1 + np.exp(- X))
 
+#calculate the gradient descent 
 def cal_gradient(X,Y,thetha,pos):
     sum = 0.0
     #temp_fea = np.dot(X,thetha)
@@ -134,6 +142,7 @@ def cal_gradient(X,Y,thetha,pos):
             sum = sum + ((temp_fea[i] - Y[i])*X[i][pos])
     return sum
 
+#compute root mean sqaured error
 def compute_rmse(test_X,test_Y,thetha):
     m = test_Y.size
     predict = test_X.dot(thetha)
@@ -142,6 +151,7 @@ def compute_rmse(test_X,test_Y,thetha):
     rmse = math.sqrt(sse)
     return rmse,sse
 
+#calculate precision
 def compute_efficiency(test_X,test_Y,thetha):
     m = test_Y.size
     right = 0
@@ -153,10 +163,8 @@ def compute_efficiency(test_X,test_Y,thetha):
             prediction = 1
         else:
             prediction = 0
-
         if prediction == test_Y[i]:
             right+=1
-
     print "Total : ",test_X.shape[0]," Correct : ",right," Percentage : ",right*100/test_X.shape[0]
     return right*100/test_X.shape[0]
 
