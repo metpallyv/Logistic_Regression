@@ -51,7 +51,10 @@ of 768 instances.
 Here are the definitions of the features:
 
 Diabetes files consist of four fields per record. Each field is separated by a tab and each record is separated by a newline. File Names and format: 
+
 1.  Date in MM-DD-YYYY format 
 2.  Time in XX:YY format 
 3. Code 
 4. Value
+
+I run ten fold cross-validation for all the data sets.
