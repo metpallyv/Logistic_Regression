@@ -57,4 +57,4 @@ Diabetes files consist of four fields per record. Each field is separated by a t
 3. Code 
 4. Value
 
-I run ten fold cross-validation for all the data sets.
+I run ten fold cross-validation for all the data sets. I used z-score normalization to normalize features.
