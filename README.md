@@ -3,7 +3,7 @@ Goal of this project is to implement binary classification using Logistic  Regre
 
 In this project, I implemented logistic regression for binary classification using log likelihood.
 
-I implemented on three datasets for binary classification:
+I ran it on three datasets for binary classification:
 
 • Spambase: the objective is to classify email messages as being spam or not. To this end the
 dataset uses fifty seven text based features to represent each email message. There are about
